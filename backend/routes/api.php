@@ -1,5 +1,15 @@
 <?php
 
+use App\Application\Controllers\Category\CategoryCreateAction;
+use App\Application\Controllers\Category\CategoryDeleteAction;
+use App\Application\Controllers\Category\CategoryGetAllAction;
+use App\Application\Controllers\Category\CategoryGetByIdAction;
+use App\Application\Controllers\Category\CategoryUpdateAction;
+use App\Application\Controllers\Product\ProductCreateAction;
+use App\Application\Controllers\Product\ProductDeleteAction;
+use App\Application\Controllers\Product\ProductGetAllAction;
+use App\Application\Controllers\Product\ProductGetByIdAction;
+use App\Application\Controllers\Product\ProductUpdateAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +26,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('categories')->group(function () {
+    Route::get('/', CategoryGetAllAction::class);
+    Route::post('/', CategoryCreateAction::class);
+    Route::get('/{category}', CategoryGetByIdAction::class);
+    Route::put('/{category}', CategoryUpdateAction::class);
+    Route::delete('/{category}', CategoryDeleteAction::class);
+});
+
+Route::prefix('products')->group(function () {
+    Route::get('/', ProductGetAllAction::class);
+    Route::post('/', ProductCreateAction::class);
+    Route::get('/{product}', ProductGetByIdAction::class);
+    Route::put('/{product}', ProductUpdateAction::class);
+    Route::delete('/{product}', ProductDeleteAction::class);
 });
