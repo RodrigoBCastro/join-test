@@ -30,9 +30,9 @@ services:
     container_name: database
     restart: unless-stopped
     environment:
-      POSTGRES_DB: app_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: jointest
+      POSTGRES_USER: jointest
+      POSTGRES_PASSWORD: jointest
     ports:
       - "5432:5432"
     volumes:
