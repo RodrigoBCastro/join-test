@@ -2,7 +2,9 @@
 
 namespace App\Domain\Services\Product;
 
-use App\Domain\Models\Product;
+use App\Assembler\Product\ProductToProductResponseDtoAssembler;
+use App\Domain\DTO\ProductRequestDto;
+use App\Domain\DTO\ProductResponseDto;
 use App\Domain\Repositories\Contracts\ProductRepositoryInterface;
 
 class ProductUpdateService
@@ -12,8 +14,10 @@ class ProductUpdateService
     ) {
     }
 
-    public function __invoke(int $id, array $data): Product
+    public function __invoke(int $id, ProductRequestDto $productRequestDto): ProductResponseDto
     {
-        return $this->productRepository->update($id, $data);
+        $product = $this->productRepository->update($id, $productRequestDto->toArray());
+
+        return (new ProductToProductResponseDtoAssembler())($product);
     }
 }

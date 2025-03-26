@@ -31,15 +31,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('categories')->group(function () {
     Route::get('/', CategoryGetAllAction::class);
     Route::post('/', CategoryCreateAction::class);
-    Route::get('/{category}', CategoryGetByIdAction::class);
-    Route::put('/{category}', CategoryUpdateAction::class);
-    Route::delete('/{category}', CategoryDeleteAction::class);
+    Route::get('/{categories}', CategoryGetByIdAction::class);
+    Route::put('/{categories}', CategoryUpdateAction::class);
+    Route::delete('/{categories}', CategoryDeleteAction::class);
 });
 
 Route::prefix('products')->group(function () {
     Route::get('/', ProductGetAllAction::class);
     Route::post('/', ProductCreateAction::class);
-    Route::get('/{product}', ProductGetByIdAction::class);
-    Route::put('/{product}', ProductUpdateAction::class);
-    Route::delete('/{product}', ProductDeleteAction::class);
+    Route::get('/{products}', ProductGetByIdAction::class);
+    Route::put('/{products}', ProductUpdateAction::class);
+    Route::delete('/{products}', ProductDeleteAction::class);
 });

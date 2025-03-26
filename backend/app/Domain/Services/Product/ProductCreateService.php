@@ -2,7 +2,10 @@
 
 namespace App\Domain\Services\Product;
 
-use App\Domain\Models\Product;
+use App\Assembler\Product\ProductRequestDtoToProductAssembler;
+use App\Assembler\Product\ProductToProductResponseDtoAssembler;
+use App\Domain\DTO\ProductRequestDto;
+use App\Domain\DTO\ProductResponseDto;
 use App\Domain\Repositories\Contracts\ProductRepositoryInterface;
 
 class ProductCreateService
@@ -12,11 +15,12 @@ class ProductCreateService
     ) {
     }
 
-    public function __invoke(array $data): Product
+    public function __invoke(ProductRequestDto $productRequestDto): ProductResponseDto
     {
-        $data['data_cadastro'] = new \DateTime();
-//        dd($data);
+        $product = (new ProductRequestDtoToProductAssembler())($productRequestDto);
 
-        return $this->productRepository->create($data);
+        $this->productRepository->create($product);
+
+        return (new ProductToProductResponseDtoAssembler())($product);
     }
 }

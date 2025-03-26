@@ -2,6 +2,8 @@
 
 namespace App\Domain\Services\Category;
 
+use App\Assembler\Category\CategoryToCategoryResponseDtoAssembler;
+use App\Domain\DTO\CategoryResponseDto;
 use App\Domain\Models\Category;
 use App\Domain\Repositories\Contracts\CategoryRepositoryInterface;
 
@@ -12,8 +14,10 @@ class CategoryGetByIdService
     ) {
     }
 
-    public function __invoke(int $id): Category
+    public function __invoke(int $id): CategoryResponseDto
     {
-        return $this->categoryRepository->getById($id);
+        $category = $this->categoryRepository->getById($id);
+
+        return (new CategoryToCategoryResponseDtoAssembler())($category);
     }
 }

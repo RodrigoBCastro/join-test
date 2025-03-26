@@ -10,12 +10,14 @@ class ProductRepository implements ProductRepositoryInterface
 {
     public function getAll(): Collection
     {
-        return Product::all();
+        return Product::orderBy('id_produto', 'asc')->get();
     }
 
-    public function create(array $data): Product
+    public function create(Product $product): Product
     {
-        return Product::create($data);
+        $product->save();
+
+        return $product;
     }
 
     public function getById(int $id): Product
