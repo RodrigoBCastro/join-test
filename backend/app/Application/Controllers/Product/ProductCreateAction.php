@@ -2,7 +2,7 @@
 
 namespace App\Application\Controllers\Product;
 
-use App\Application\Requests\Product\ProductRequest;
+use App\Application\Requests\ProductRequest;
 use App\Assembler\Product\ProductRequestToPessoaRequestDtoAssembler;
 use App\Domain\Services\Product\ProductCreateService;
 use Symfony\Component\HttpFoundation\JsonResponse;
