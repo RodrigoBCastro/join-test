@@ -2,7 +2,7 @@
 
 namespace App\Application\Controllers\Category;
 
-use App\Application\Requests\Product\CategoryRequest;
+use App\Application\Requests\CategoryRequest;
 use App\Assembler\Category\CategoryRequestToCategoryRequestDtoAssembler;
 use App\Domain\Services\Category\CategoryUpdateService;
 use Symfony\Component\HttpFoundation\JsonResponse;
