@@ -1,0 +1,290 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Exemplo",
+        "description": "Documentação da API utilizando Swagger",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Lista todas as categorias",
+                "operationId": "e17cedcfbcc936b3826967f2e921f61c",
+                "responses": {
+                    "200": {
+                        "description": "Lista de categorias"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Cria uma nova categoria",
+                "operationId": "d20e4d2f9157833f8af6697f03ef3abb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nome_categoria": {
+                                        "type": "string",
+                                        "example": "Eletrônicos"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Categoria criada com sucesso"
+                    }
+                }
+            }
+        },
+        "/api/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Busca uma categoria pelo ID",
+                "operationId": "5f26e2f98779018092c97573c69bb23a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categoria encontrada"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Atualiza uma categoria",
+                "operationId": "78ee68e4a14d5803d24a49bf599202aa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nome_categoria": {
+                                        "type": "string",
+                                        "example": "Eletrônicos"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Categoria atualizada com sucesso"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Exclui uma categoria",
+                "operationId": "3fce35c1ec03f498d07a46d1c12e51c5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Categoria excluída com sucesso"
+                    }
+                }
+            }
+        },
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Lista todos os produtos",
+                "operationId": "e2063e702d478bcfd3d6d322b1515aa3",
+                "responses": {
+                    "200": {
+                        "description": "Lista de produtos"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Cria um novo produto",
+                "operationId": "a63e5b03619095ff72477d29c59e9fe4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nome_produto": {
+                                        "type": "string",
+                                        "example": "Notebook atualizado"
+                                    },
+                                    "id_categoria_produto": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "valor_produto": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 1299.99
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Produto criado com sucesso"
+                    }
+                }
+            }
+        },
+        "/api/products/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Busca um produto pelo ID",
+                "operationId": "2caf6053dc9d9a1e93fb22f259b7c9df",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produto encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Atualiza um produto",
+                "operationId": "7bb5030ca7c1c69e33a78b97d9dcd7f6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nome_produto": {
+                                        "type": "string",
+                                        "example": "Notebook atualizado"
+                                    },
+                                    "id_categoria_produto": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "valor_produto": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 1299.99
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Produto atualizado com sucesso"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Exclui um produto",
+                "operationId": "5d95ba1473b1b0f0e6deb793f333910d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Produto excluído com sucesso"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Categories",
+            "description": "Categories"
+        },
+        {
+            "name": "Products",
+            "description": "Products"
+        }
+    ]
+}
