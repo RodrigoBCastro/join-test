@@ -2,8 +2,9 @@
 
 namespace App\Application\Controllers\Category;
 
+use App\Application\Requests\Product\CategoryRequest;
+use App\Assembler\Category\CategoryRequestToCategoryRequestDtoAssembler;
 use App\Domain\Services\Category\CategoryCreateService;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CategoryCreateAction
@@ -27,10 +28,12 @@ class CategoryCreateAction
      *     @OA\Response(response=201, description="Categoria criada com sucesso")
      * )
      */
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(CategoryRequest $request): JsonResponse
     {
+        $categoryRequestDto = (new CategoryRequestToCategoryRequestDtoAssembler())($request);
+
         return response()->json(
-            ($this->categoryService)($request->all()), 201
+            ($this->categoryService)($categoryRequestDto)->toArray(), 201
         );
     }
 }

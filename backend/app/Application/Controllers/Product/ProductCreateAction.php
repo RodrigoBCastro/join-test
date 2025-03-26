@@ -2,8 +2,9 @@
 
 namespace App\Application\Controllers\Product;
 
+use App\Application\Requests\Product\ProductRequest;
+use App\Assembler\Product\ProductRequestToPessoaRequestDtoAssembler;
 use App\Domain\Services\Product\ProductCreateService;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ProductCreateAction
@@ -29,10 +30,12 @@ class ProductCreateAction
      *     @OA\Response(response=201, description="Produto criado com sucesso")
      * )
      */
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(ProductRequest $request): JsonResponse
     {
+        $productRequestDto = (new ProductRequestToPessoaRequestDtoAssembler())($request);
+
         return response()->json(
-            ($this->productService)($request->all()), 201
+            ($this->productService)($productRequestDto)->toArray(), 201
         );
     }
 }

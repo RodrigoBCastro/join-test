@@ -24,7 +24,7 @@ class ProductGetByIdAction
     public function __invoke(int $idProduct): JsonResponse
     {
         return response()->json(
-            ($this->productService)($idProduct)
+            ($this->productService)($idProduct)->toArray()
         );
     }
 }

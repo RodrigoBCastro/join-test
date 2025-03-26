@@ -10,12 +10,14 @@ class CategoryRepository implements CategoryRepositoryInterface
 {
     public function getAll(): Collection
     {
-        return Category::all();
+        return Category::orderBy('id_categoria_planejamento', 'asc')->get();
     }
 
-    public function create(array $data): Category
+    public function create(Category $category): Category
     {
-        return Category::create($data);
+        $category->save();
+
+        return $category;
     }
 
     public function getById(int $id): Category

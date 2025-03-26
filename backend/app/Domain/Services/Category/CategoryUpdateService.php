@@ -2,7 +2,9 @@
 
 namespace App\Domain\Services\Category;
 
-use App\Domain\Models\Category;
+use App\Assembler\Category\CategoryToCategoryResponseDtoAssembler;
+use App\Domain\DTO\CategoryRequestDto;
+use App\Domain\DTO\CategoryResponseDto;
 use App\Domain\Repositories\Contracts\CategoryRepositoryInterface;
 
 class CategoryUpdateService
@@ -12,8 +14,10 @@ class CategoryUpdateService
     ) {
     }
 
-    public function __invoke(int $id, array $data): Category
+    public function __invoke(int $id, CategoryRequestDto $categoryRequestDto): CategoryResponseDto
     {
-        return $this->categoryRepository->update($id, $data);
+        $category = $this->categoryRepository->update($id, $categoryRequestDto->toArray());
+
+        return (new CategoryToCategoryResponseDtoAssembler())($category);
     }
 }

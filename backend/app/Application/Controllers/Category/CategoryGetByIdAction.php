@@ -24,7 +24,7 @@ class CategoryGetByIdAction
     public function __invoke(int $idCategory): JsonResponse
     {
         return response()->json(
-            ($this->categoryService)($idCategory)
+            ($this->categoryService)($idCategory)->toArray()
         );
     }
 }
